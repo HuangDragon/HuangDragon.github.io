@@ -3,7 +3,7 @@
   <entry>
     <title>Openlayers加载栅格数据</title>
     <url>/2023/08/21/%E5%8A%A0%E8%BD%BDtiff/</url>
-    <content><![CDATA[<h1 id="Openlayers加载在线的TIFF图片"><a href="#Openlayers加载在线的TIFF图片" class="headerlink" title="Openlayers加载在线的TIFF图片"></a>Openlayers加载在线的TIFF图片</h1><p>由于<em><strong>ImageStatic</strong></em>不支持添加栅格数据作为图层源，所以使用<em><strong>Openlayers</strong></em>的<em><strong>GeoTIFF</strong></em>接口作为栅格数据源，<br>加载图层的类型为<em><strong>WebGLTile</strong></em>， 相较于使用<em><strong>canvans</strong></em>添加tiff的方法来说，这种方法可以随着底图一起缩放。</p>
+    <content><![CDATA[<h1 id="Openlayers加载在线的TIFF图片"><a href="#Openlayers加载在线的TIFF图片" class="headerlink" title="Openlayers加载在线的TIFF图片"></a>Openlayers加载在线的TIFF图片</h1><p>由于<em><strong>ImageStatic</strong></em>不支持添加栅格数据作为图层源，所以使用<em><strong>Openlayers</strong></em>的<em><strong>GeoTIFF</strong></em>接口作为栅格数据源，<br>加载图层的类型为<em><strong>WebGLTile</strong></em>， 相较于使用<em><strong>canvans</strong></em>添加<em><strong>Tiff</strong></em>的方法来说，这种方法可以随着底图一起缩放。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> tlayer  <span class="comment">// 创建tiff图层的全局变量</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">addTiffLayer</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="comment">//tiff图层的数据源</span></span><br><span class="line">    <span class="keyword">var</span> tiffsource = <span class="keyword">new</span> ol.<span class="property">source</span>.<span class="title class_">GeoTIFF</span>(&#123;</span><br><span class="line">        <span class="attr">sources</span>: [&#123;</span><br><span class="line">                <span class="attr">url</span>: <span class="string">&#x27;url_of_tiff&#x27;</span>  <span class="comment">//开发者所要加的Tiff图层的url地址，如https://tiffsource.com/example.tif</span></span><br><span class="line">            &#125;,</span><br><span class="line">        ],</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">//实例化Tiff图层</span></span><br><span class="line">    tlayer = <span class="keyword">new</span> ol.<span class="property">layer</span>.<span class="title class_">WebGLTile</span>(&#123;</span><br><span class="line">        <span class="attr">source</span>:tiffsource,</span><br><span class="line">        <span class="attr">opacity</span>:<span class="number">0.9</span> <span class="comment">//透明度</span></span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="comment">//往map对象中添加图层</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">map</span>.<span class="title function_">addLayer</span>(tlayer);</span><br><span class="line">    <span class="comment">//更新视图范围</span></span><br><span class="line">    map.<span class="title function_">getView</span>().<span class="title function_">fit</span>(</span><br><span class="line">        extent, <span class="comment">//此处的extent为开发者自己设计</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">size</span>:map.<span class="title function_">getSize</span>(),</span><br><span class="line">            <span class="attr">padding</span>: [<span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>]</span><br><span class="line">        &#125;</span><br><span class="line">    )</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;add successfully&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>运行结果:<br><br><img src="/img/result.png"></p>
 ]]></content>
@@ -47,9 +47,36 @@
         <category>Vlog</category>
       </categories>
       <tags>
-        <tag>daily</tag>
-        <tag>cat</tag>
-        <tag>school</tag>
+        <tag>Daily</tag>
+        <tag>Cat</tag>
+        <tag>School-life</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Flask简介</title>
+    <url>/2023/08/21/Flask%E6%8E%A5%E6%94%B6%E6%96%87%E4%BB%B6/</url>
+    <content><![CDATA[<h1 id="Flask框架"><a href="#Flask框架" class="headerlink" title="Flask框架"></a>Flask框架</h1><p><em><strong>Flask</strong></em>框架是用<em><strong>ython</strong></em>语言基于<em><strong>Werkzeug</strong></em>工具箱编写的轻量级<em><strong>web</strong></em>开发框架<br><br>特点如下：<br></p>
+<ul>轻量级：Flask 框架非常轻量级，代码量少且易于学习和使用。</ul>
+<ul>灵活性：Flask 允许开发人员使用自己喜欢的工具和库来实现功能，不会强制性地约束开发人员使用某种编程风格。</ul>
+<ul>易于扩展：Flask 提供了丰富的扩展库，可以帮助开发人员快速构建应用程序的功能。</ul>
+<ul>内置开发服务器：Flask 框架内置了一个简单而强大的开发服务器，使得应用程序的开发和测试变得更加容易。</ul>
+<ul>RESTful 支持：Flask 框架支持 RESTful API 开发，使得开发人员可以使用 HTTP 协议构建 Web API。</ul>
+
+<h2 id="Flask框架的一些函数"><a href="#Flask框架的一些函数" class="headerlink" title="Flask框架的一些函数"></a>Flask框架的一些函数</h2><h3 id="Flask-name-static-folder-’’-templates-folder-’’"><a href="#Flask-name-static-folder-’’-templates-folder-’’" class="headerlink" title="Flask(name, static_folder&#x3D;’’, templates_folder&#x3D;’’)"></a>Flask(<strong>name</strong>, static_folder&#x3D;’’, templates_folder&#x3D;’’)</h3><p>其中：第一个参数__<em><strong>name</strong></em>__为默认;<br><br>第二个参数<em><strong>static_folder</strong></em>为存放静态文件的文件夹;<br><br>第三个参数<em><strong>templates_folder</strong></em>用于存放<em><strong>html、css和javascript</strong></em>等文件</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line">app = Flask(__name__, static_folder=<span class="string">&#x27;&#x27;</span>, templates_folder=<span class="string">&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="app-route-‘’-methods"><a href="#app-route-‘’-methods" class="headerlink" title="app.route(‘’, methods&#x3D;[ ])"></a>app.route(‘’, methods&#x3D;[ ])</h3><p>其中：第一个参数为所创建的路由<br><br>第二个参数是该路由下，所接收的请求类型（<em><strong>POST</strong></em> 和 <em><strong>GET</strong></em>）,默认只接受<em><strong>GET</strong></em>请求</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/upload&#x27;</span>, methods=[<span class="string">&#x27;POST&#x27;</span>,<span class="string">&#x27;GET&#x27;</span>]</span>)</span></span><br></pre></td></tr></table></figure>
+<p>以上代码就是创建了一个路由<em><strong><a href="http://localhost:5000/upload">http://localhost:5000/upload</a></strong></em>, 并接收POST和GET请求</p>
+<h3 id="render-template"><a href="#render-template" class="headerlink" title="render_template()"></a>render_template()</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> render_template</span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">render_UI</span>:</span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">&#x27;index.html&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>在<em><strong><a href="http://localhost:5000/">http://localhost:5000/</a></strong></em> 中显示index.html的内容</p>
+<h3 id="request"><a href="#request" class="headerlink" title="request"></a>request</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/upload&#x27;</span>, methods=[<span class="string">&#x27;POST&#x27;</span>,<span class="string">&#x27;GET&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_file</span>():</span><br><span class="line">    <span class="comment"># request.files[&#x27;file&#x27;]中的file是在form表单中所提交的文件的文件名</span></span><br><span class="line">    uploaded_file = request.files[<span class="string">&#x27;file&#x27;</span>] <span class="keyword">if</span> <span class="string">&#x27;file&#x27;</span> <span class="keyword">in</span> request.files <span class="keyword">else</span> <span class="literal">None</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;reqrequest.files is &#123;request.files&#125;&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;uploaded_file is &#123;uploaded_file&#125;&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> uploaded_file</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Flask</category>
+      </categories>
+      <tags>
+        <tag>Flask</tag>
+        <tag>后端</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
 </search>
