@@ -78,4 +78,18 @@
         <tag>Python</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Python栅格数据处理</title>
+    <url>/2023/08/21/Python/</url>
+    <content><![CDATA[<h1 id="Python-给栅格数据添加坐标信息"><a href="#Python-给栅格数据添加坐标信息" class="headerlink" title="Python 给栅格数据添加坐标信息"></a>Python 给栅格数据添加坐标信息</h1><p>栅格数据通常不会自带坐标信息，需要用户自定义坐标信息<br><br>下面提供了一种用户根据指定范围（<em><strong>Extent</strong></em>）添加坐标信息的方法</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> rasterio</span><br><span class="line"><span class="keyword">from</span> affine <span class="keyword">import</span> Affine</span><br><span class="line"><span class="keyword">from</span> rasterio.crs <span class="keyword">import</span> CRS</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">proj_TIFF</span>(<span class="params">inputpath=<span class="string">&quot;&quot;</span>, outputpath=<span class="string">&quot;&quot;</span>, extent=<span class="literal">None</span></span>):</span><br><span class="line">    <span class="comment"># 打开TIFF文件</span></span><br><span class="line">    <span class="keyword">with</span> rasterio.<span class="built_in">open</span>(inputpath,<span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> src:</span><br><span class="line">        <span class="comment"># 读取源TIFF的原元数据</span></span><br><span class="line">        meta = src.meta.copy()</span><br><span class="line">        <span class="comment"># 获取TIFF的宽度和高度</span></span><br><span class="line">        width, height = src.width, src.height</span><br><span class="line">        <span class="comment"># 获取指定的新范围</span></span><br><span class="line">        xmin, ymin, xmax, ymax = extent</span><br><span class="line">        <span class="comment"># 获取像素长和宽</span></span><br><span class="line">        pixel_width = (xmax - xmin) / width</span><br><span class="line">        pixel_height = (ymax - ymin) / height</span><br><span class="line">        <span class="comment"># 创建仿射矩阵</span></span><br><span class="line">        transform = Affine(pixel_width, <span class="number">0</span>, xmin</span><br><span class="line">                           <span class="number">0</span>, pixel_height, ymax)</span><br><span class="line">        <span class="comment"># 更新元数据                  </span></span><br><span class="line">        meta.update(transform=transform, crs=CRS.form_epsg(<span class="number">3857</span>))</span><br><span class="line">        <span class="comment"># 创建TIFF文件</span></span><br><span class="line">        <span class="keyword">with</span> rasterio.<span class="built_in">open</span>(outputpath, <span class="string">&#x27;w&#x27;</span>, **meta) <span class="keyword">as</span> dst:</span><br><span class="line">            <span class="comment"># 复制原始数据到新文件</span></span><br><span class="line">            dst.write(src.read())</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>TIFF</tag>
+        <tag>Projection</tag>
+      </tags>
+  </entry>
 </search>
