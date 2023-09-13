@@ -92,4 +92,22 @@
         <tag>Projection</tag>
       </tags>
   </entry>
+  <entry>
+    <title>POST请求</title>
+    <url>/2023/09/13/%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82/</url>
+    <content><![CDATA[<h1 id="使用XMLHttpRequest发送POST请求"><a href="#使用XMLHttpRequest发送POST请求" class="headerlink" title="使用XMLHttpRequest发送POST请求"></a>使用XMLHttpRequest发送POST请求</h1><p>以下示例通过向后端发送POST请求，接收后端返回的信息</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">send_request</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">const</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">    xhr.<span class="title function_">open</span>(<span class="string">&#x27;POST&#x27;</span>,<span class="string">&#x27;http://localhost:8080/route&#x27;</span>,<span class="string">&#x27;true&#x27;</span>);</span><br><span class="line">    xhr.<span class="title function_">setRequestHeader</span>(<span class="string">&#x27;Content-Type&#x27;</span>, <span class="string">&#x27;application/json&#x27;</span>);</span><br><span class="line">    xhr.<span class="property">onreadystatechange</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">if</span>(xhr.<span class="property">readyState</span> === <span class="number">4</span> &amp;&amp; xhr.<span class="property">status</span> === <span class="number">200</span>)&#123;</span><br><span class="line">            <span class="comment">//此处可对返回的数据进行操作</span></span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">JSON</span>.<span class="title function_">parse</span>(xhr.<span class="property">responseText</span>))</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="以flask管理后端，向前端返回一个url"><a href="#以flask管理后端，向前端返回一个url" class="headerlink" title="以flask管理后端，向前端返回一个url"></a>以flask管理后端，向前端返回一个url</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"><span class="keyword">from</span> flask_cors <span class="keyword">import</span> CORS</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line"><span class="comment"># 解决跨域问题</span></span><br><span class="line">CORS(app, supports_credentials=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/route&#x27;</span>, methods=[<span class="string">&#x27;POST&#x27;</span>, <span class="string">&#x27;GET&#x27;</span>]</span>)</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_url</span>(<span class="params">url</span>):</span><br><span class="line">        <span class="keyword">return</span> jsonify(file_url=url)</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Javascript</category>
+      </categories>
+      <tags>
+        <tag>后端</tag>
+        <tag>Python</tag>
+        <tag>Javascript</tag>
+        <tag>POST请求</tag>
+        <tag>XMLHttpRequest</tag>
+      </tags>
+  </entry>
 </search>
